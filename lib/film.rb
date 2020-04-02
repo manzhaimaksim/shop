@@ -1,4 +1,4 @@
-class Movie < Product
+class Film < Product
   def self.from_file(path)
     lines = File.readlines(path, chomp: true, encoding: 'UTF-8')
     self.new(

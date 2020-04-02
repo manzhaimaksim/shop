@@ -14,9 +14,4 @@ class Product
   def to_s
     "#{@price} руб. (осталось #{@amount})"
   end
-
-  def from_file
-    # NotImplementedError
-  end
-
 end

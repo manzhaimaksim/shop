@@ -1,21 +1,15 @@
 require_relative 'lib/product'
 require_relative 'lib/book'
-require_relative 'lib/movie'
+require_relative 'lib/film'
+require_relative 'lib/product_collection'
 
-products = []
+collection = ProductCollection.from_dir(File.dirname(__FILE__) + '/data')
 
-books_paths = Dir.glob(File.join(__dir__, '/data/books', '*.txt'))
-
-books_paths.each do |path|
-  products << Book.from_file(path)
-end
-
-movies_paths = Dir.glob(File.join(__dir__, '/data/movies', '*.txt'))
-
-movies_paths.each do |path|
-  products << Movie.from_file(path)
-end
+collection.sort!(by: :price, order: :desc)
 
 puts 'Вот какие товары у нас есть'
 puts
-products.each { |product| puts product }
+
+collection.to_a.each do |product|
+  puts product
+end
