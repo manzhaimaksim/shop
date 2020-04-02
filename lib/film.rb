@@ -7,7 +7,7 @@ class Film < Product
         year: lines[2],
         price: lines[3].to_i,
         amount: lines[4].to_i
-    )
+      )
   end
 
   attr_accessor :director, :year
