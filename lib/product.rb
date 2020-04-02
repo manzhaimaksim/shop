@@ -1,13 +1,9 @@
 class Product
+  def self.from_file(path)
+    raise NotImplementedError
+  end
+
   attr_accessor :price, :amount, :title
-
-  def self.product_types
-    [Book, Movie]
-  end
-
-  def self.create(type_index)
-    product_types[type_index].new
-  end
 
   def initialize(params)
     @price = params[:price]
@@ -17,6 +13,10 @@ class Product
 
   def to_s
     "#{@price} руб. (осталось #{@amount})"
+  end
+
+  def from_file
+    # NotImplementedError
   end
 
 end
