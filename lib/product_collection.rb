@@ -26,6 +26,16 @@ class ProductCollection
     @products
   end
 
+  def to_s
+    self.to_a.each.with_index(1) do |product, index|
+      puts "#{index}. #{product}"
+    end
+  end
+
+  def product_by_index(choice)
+    self.to_a[choice - 1]
+  end
+
   def sort!(params)
     case params[:by]
     when :title

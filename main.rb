@@ -15,24 +15,19 @@ total = 0
 basket = []
 
 loop do
-  collection.to_a.each.with_index(1) do |product, index|
-    puts "#{index}. #{product}"
-  end
+  puts collection
   puts '0. Выход'
-
   user_choice = STDIN.gets.to_i
 
-  if user_choice.zero?
-    puts 'Вы купили:'
-    basket.each { |product| puts product }
-    puts "С вас #{total} руб. Спасибо за покупки!"
-    break
-  end
+  break if user_choice.zero?
 
-  basket << collection.to_a[user_choice - 1]
-  collection.to_a[user_choice - 1].amount -= 1
-  puts "Вы выбрали: #{collection.to_a[user_choice - 1]}"
-
-  total += collection.to_a[user_choice - 1].price
-  puts "Всего товаров на сумму: #{total} руб."
+  collection.product_by_index(user_choice).amount -= 1
+  basket << collection.product_by_index(user_choice)
+  puts "Вы выбрали: #{collection.product_by_index(user_choice)}"
+  puts
+  total += collection.product_by_index(user_choice).price
 end
+
+puts 'Вы купили:'
+basket.each { |product| puts product }
+puts "Всего товаров на сумму: #{total} руб."
