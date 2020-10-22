@@ -27,13 +27,13 @@ class ProductCollection
   end
 
   def to_s
-    self.to_a.each.with_index(1) do |product, index|
-      puts "#{index}. #{product}"
+    @products.map.with_index(1) do |product, index|
+      [index, product].join('. ')
     end
   end
 
   def product_by_index(choice)
-    self.to_a[choice - 1]
+    @products[choice - 1]
   end
 
   def sort!(params)

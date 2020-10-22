@@ -11,23 +11,23 @@ collection.sort!(by: :price, order: :desc)
 puts 'Что желаете купить?'
 puts
 
-total = 0
 basket = []
 
 loop do
-  puts collection
+  puts collection.to_s
   puts '0. Выход'
   user_choice = STDIN.gets.to_i
 
-  break if user_choice.zero?
+  break if user_choice.zero? || !user_choice.between?(1, collection.to_a.size)
 
-  collection.product_by_index(user_choice).amount -= 1
-  basket << collection.product_by_index(user_choice)
-  puts "Вы выбрали: #{collection.product_by_index(user_choice)}"
+  chosen_product = collection.product_by_index(user_choice)
+
+  chosen_product.amount -= 1
+  basket << chosen_product
+  puts "Вы выбрали: #{chosen_product}"
   puts
-  total += collection.product_by_index(user_choice).price
 end
 
 puts 'Вы купили:'
 basket.each { |product| puts product }
-puts "Всего товаров на сумму: #{total} руб."
+puts "Всего товаров на сумму: #{basket.sum(&:price)} руб."
