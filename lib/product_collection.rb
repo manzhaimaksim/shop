@@ -28,8 +28,8 @@ class ProductCollection
 
   def to_s
     @products.map.with_index(1) do |product, index|
-      [index, product].join('. ')
-    end
+      "#{index}. #{product}"
+    end.join("\n")
   end
 
   def product_by_index(choice)

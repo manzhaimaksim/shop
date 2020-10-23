@@ -14,7 +14,7 @@ puts
 basket = []
 
 loop do
-  puts collection.to_s
+  puts collection
   puts '0. Выход'
   user_choice = STDIN.gets.to_i
 
